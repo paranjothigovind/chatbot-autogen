@@ -30,7 +30,7 @@ cov:
 check: lint typecheck test
 
 run:
-	uv run uvicorn app.main:app --reload --port 8000
+	uv run uvicorn app.main:create_app --factory --reload --port 8000
 
 clean:
 	rm -rf .mypy_cache .ruff_cache .pytest_cache .coverage coverage.xml htmlcov

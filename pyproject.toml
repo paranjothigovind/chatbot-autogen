@@ -19,6 +19,12 @@ dependencies = [
     "autogen-ext[openai]==0.7.5",
     "structlog==26.1.0",
     "arq==0.28.0",
+    "pyjwt[crypto]==2.15.1",
+    "azure-monitor-opentelemetry==1.8.12",
+    "opentelemetry-api==1.45.2",
+    "opentelemetry-sdk==1.45.2",
+    "azure-identity==1.27.0",
+    "azure-keyvault-secrets==4.12.0",
 ]
 
 [dependency-groups]
@@ -57,8 +63,13 @@ strict = true
 files = ["app"]
 plugins = ["pydantic.mypy"]
 
+[[tool.mypy.overrides]]
+module = ["asyncpg", "asyncpg.*"]
+ignore_missing_imports = true
+
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
 testpaths = ["tests"]
 markers = [
     "integration: needs Docker (testcontainers)",
